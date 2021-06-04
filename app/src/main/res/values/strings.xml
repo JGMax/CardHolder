@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Card Holder</string>
+    <string name="user_name_hint">Holder name</string>
+    <string name="password_hint">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Create</string>
+    <string name="empty_field">Empty</string>
+    <string name="incorrect_data">Incorrect</string>
+    <string name="user_name_already_created">Holder have already created</string>
+</resources>
