@@ -69,7 +69,7 @@ class LoginFragment : Fragment() {
         return value().isNullOrEmpty()
     }
 
-    private fun TextInputEditText.value() : String? = text?.toString()
+    private fun TextInputEditText.value() : String? = text?.toString()?.trim()
 
     private fun onRegisterClick() {
         binding.apply {
