@@ -7,4 +7,9 @@
     <string name="empty_field">Empty</string>
     <string name="incorrect_data">Incorrect</string>
     <string name="user_name_already_created">Holder have already created</string>
+    <string name="card_background_description">card background</string>
+    <string name="card_menu_description">card menu</string>
+    <string name="social_networks">Social Networks</string>
+    <string name="phone_numbers">Phone numbers</string>
+    <string name="add_button_description">add button</string>
 </resources>
