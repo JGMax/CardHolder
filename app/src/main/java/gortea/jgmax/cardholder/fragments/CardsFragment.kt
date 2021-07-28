@@ -8,7 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import gortea.jgmax.cardholder.R
-import gortea.jgmax.cardholder.adapters.CardsRecyclerViewAdapter
+import gortea.jgmax.cardholder.adapters.CardsListAdapter
+import gortea.jgmax.cardholder.constants.ITEM_BOTTOM_MARGIN_DP
+import gortea.jgmax.cardholder.constants.ITEM_LEFT_MARGIN_DP
+import gortea.jgmax.cardholder.constants.ITEM_RIGHT_MARGIN_DP
+import gortea.jgmax.cardholder.constants.ITEM_TOP_MARGIN_DP
+import gortea.jgmax.cardholder.decorators.HorizontalItemDecorator
+import gortea.jgmax.cardholder.decorators.VerticalItemDecorator
+import gortea.jgmax.cardholder.utils.toPx
 
 class CardsFragment : Fragment() {
 
@@ -21,7 +28,15 @@ class CardsFragment : Fragment() {
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = CardsRecyclerViewAdapter(context, arrayListOf())
+                adapter = CardsListAdapter(arrayListOf())
+                addItemDecoration(HorizontalItemDecorator(
+                    leftDivider = ITEM_LEFT_MARGIN_DP.toPx(context),
+                    rightDivider = ITEM_RIGHT_MARGIN_DP.toPx(context)
+                ))
+                addItemDecoration(VerticalItemDecorator(
+                    topDivider = ITEM_TOP_MARGIN_DP.toPx(context),
+                    bottomDivider = ITEM_BOTTOM_MARGIN_DP.toPx(context)
+                ))
             }
         }
         return view
