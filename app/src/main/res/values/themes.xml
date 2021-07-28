@@ -3,6 +3,7 @@
     <style name="Theme.CardHolder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/color_primary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/color_secondary</item>
         <item name="colorOnSecondary">@color/color_on_secondary</item>

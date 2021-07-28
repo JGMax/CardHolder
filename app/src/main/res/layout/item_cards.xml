@@ -1,148 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    app:cardBackgroundColor="?attr/colorAccent"
     app:cardCornerRadius="2dp"
     app:cardElevation="4dp">
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/card_background_description"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg_card" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/name_text_view"
-                style="@style/TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="8"
-                tools:text="Maxim Bredikhin" />
-
-            <Space
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:id="@+id/popup_menu_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/card_menu_description"
-                android:src="@drawable/ic_menu"
-                app:tint="?attr/colorAccent" />
-        </LinearLayout>
-
-        <LinearLayout
+        android:layout_height="180dp">
+        
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="8dp" />
 
-            <TextView
-                android:id="@+id/birth_date_text_view"
-                style="@style/AdditionalTextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                tools:text="20.05.2001" />
-
-            <TextView
-                android:id="@+id/age_text_view"
-                style="@style/AdditionalTextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="20 y.o." />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/additional_info_text"
-                style="@style/AdditionalTextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="63dp"
-                android:layout_weight="4"
-                tools:text="The largest projects ware started with one crazy idea, so let’s try." />
-
-            <Space
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guideline"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="8dp" />
 
-            <Button
-                android:id="@+id/social_networks_btn"
-                style="@style/CardButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="1dp"
-                android:layout_weight="9"
-                android:drawableEnd="@drawable/ic_network"
-                android:drawableTint="?attr/colorAccent"
-                android:text="@string/social_networks" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="8dp" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="8dp" />
 
-            <Button
-                android:id="@+id/phone_number_btn"
-                style="@style/CardButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="1dp"
-                android:layout_weight="9"
-                android:drawableEnd="@drawable/ic_arrow_down"
-                android:drawableTint="?attr/colorAccent"
-                android:text="@string/phone_numbers" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@+id/menu_btn"
+            app:layout_constraintStart_toStartOf="@id/left_guideline"
+            app:layout_constraintTop_toTopOf="@id/top_guideline"
+            tools:text="Bredikhin Maxim" />
+
+        <Button
+            android:id="@+id/menu_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_menu"
+            app:layout_constraintEnd_toEndOf="@id/right_guideline"
+            app:layout_constraintTop_toTopOf="@id/top_guideline" />
+
+        <TextView
+            android:id="@+id/position_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size"
+            android:layout_marginTop="2dp"
+            app:layout_constraintTop_toBottomOf="@id/name_tv"
+            app:layout_constraintStart_toStartOf="@id/left_guideline"
+            tools:text="Student, HSE" />
 
         <FrameLayout
-            android:id="@+id/contacts_zone"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/color_lines"
+            app:layout_constraintEnd_toEndOf="@id/right_guideline"
+            app:layout_constraintStart_toStartOf="@id/left_guideline"
+            app:layout_constraintBottom_toBottomOf="@id/position_tv"/>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.2"
-                android:background="@color/color_primary" />
+        <TextView
+            android:id="@+id/additional_info_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/position_tv"
+            app:layout_constraintStart_toStartOf="@id/left_guideline"
+            app:layout_constraintBottom_toTopOf="@id/location_tv"
+            tools:text="One of the best android developers\n
+Junior Android Dev of Morizo Digital\n
+Aboba"/>
 
-            <GridLayout
-                android:id="@+id/contacts_grid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3">
-            </GridLayout>
-        </FrameLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/location_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/left_guideline"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
+            tools:text="Pushkina Street, 35"
+            app:drawableTint="?attr/colorPrimary"
+            app:drawableStartCompat="@drawable/ic_map" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/color_lines"
+            app:layout_constraintEnd_toEndOf="@id/location_tv"
+            app:layout_constraintStart_toStartOf="@id/location_tv"
+            app:layout_constraintBottom_toBottomOf="@id/location_tv"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
