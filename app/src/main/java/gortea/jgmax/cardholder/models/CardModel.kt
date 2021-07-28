@@ -1,4 +1,4 @@
-package gortea.jgmax.cardholder.items
+package gortea.jgmax.cardholder.models
 
 class CardModel(val id: Int) {
     var name = ""

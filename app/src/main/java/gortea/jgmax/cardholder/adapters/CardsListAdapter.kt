@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import gortea.jgmax.cardholder.R
-import gortea.jgmax.cardholder.items.CardModel
+import gortea.jgmax.cardholder.models.CardModel
 
 
 class CardsListAdapter(

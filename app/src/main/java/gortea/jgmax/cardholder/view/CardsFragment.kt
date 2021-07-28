@@ -1,4 +1,4 @@
-package gortea.jgmax.cardholder.fragments
+package gortea.jgmax.cardholder.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

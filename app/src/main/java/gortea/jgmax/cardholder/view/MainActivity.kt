@@ -1,8 +1,8 @@
-package gortea.jgmax.cardholder
+package gortea.jgmax.cardholder.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import gortea.jgmax.cardholder.fragments.CardsFragment
+import gortea.jgmax.cardholder.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
