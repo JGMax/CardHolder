@@ -11,10 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(), Callbacks {
-
-    //todo add main menu
-
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,27 +25,5 @@ class MainActivity : AppCompatActivity(), Callbacks {
             transaction.replace(R.id.container, LoginFragment())
             transaction.commit()
         }
-    }
-
-    override suspend fun onLoginClick(login: String, password: String): Boolean {
-        if (authorize(login, password)) {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.container, CardsFragment())
-            transaction.commit()
-            CoroutineScope(Dispatchers.Main).launch {
-                supportActionBar?.show()
-            }
-            return true
-        }
-        return false
-    }
-
-    override suspend fun onRegisterClick(login: String, password: String): Boolean {
-        return onLoginClick(login, password)
-    }
-
-    private fun authorize(login: String, password: String) : Boolean {
-        //todo send data to authorize
-        return true
     }
 }

@@ -1,11 +1,9 @@
 package gortea.jgmax.cardholder.items
 
-class CardItemData {
+class CardModel(val id: Int) {
     var name = ""
-    var surname = ""
-    var dateOfBirth = ""
-    var age = ""
     var additionalInfo = ""
+    var position = ""
     val phoneNumbers = arrayListOf<String>()
     val socialNetworks = arrayListOf<String>()
 }

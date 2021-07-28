@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="4dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/card_background_description"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_card" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/name_text_view"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="8"
+                tools:text="Maxim Bredikhin" />
+
+            <Space
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/popup_menu_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/card_menu_description"
+                android:src="@drawable/ic_menu"
+                app:tint="?attr/colorAccent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/birth_date_text_view"
+                style="@style/AdditionalTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                tools:text="20.05.2001" />
+
+            <TextView
+                android:id="@+id/age_text_view"
+                style="@style/AdditionalTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="20 y.o." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/additional_info_text"
+                style="@style/AdditionalTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="63dp"
+                android:layout_weight="4"
+                tools:text="The largest projects ware started with one crazy idea, so let’s try." />
+
+            <Space
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/social_networks_btn"
+                style="@style/CardButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="9"
+                android:drawableEnd="@drawable/ic_network"
+                android:drawableTint="?attr/colorAccent"
+                android:text="@string/social_networks" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/phone_number_btn"
+                style="@style/CardButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="1dp"
+                android:layout_weight="9"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:drawableTint="?attr/colorAccent"
+                android:text="@string/phone_numbers" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/contacts_zone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.2"
+                android:background="@color/color_primary" />
+
+            <GridLayout
+                android:id="@+id/contacts_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3">
+            </GridLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

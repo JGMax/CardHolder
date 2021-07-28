@@ -2,50 +2,39 @@ package gortea.jgmax.cardholder.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.recyclerview.widget.RecyclerView
 import gortea.jgmax.cardholder.R
-import gortea.jgmax.cardholder.items.CardItemData
+import gortea.jgmax.cardholder.interfaces.OnScrollListener
+import gortea.jgmax.cardholder.items.CardModel
 
 
 class CardsRecyclerViewAdapter(
-    private val context : Context?,
-    private val values: List<CardItemData>
+    private val values: List<CardModel>
 ) : RecyclerView.Adapter<CardsRecyclerViewAdapter.ViewHolder>() {
+
+    //private val scrollListener = context as? OnScrollListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_cards, parent, false)
+            .inflate(R.layout.item_cards, parent, false)
         return ViewHolder(view)
     }
 
     @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.apply {
-            name.text = "${item.name} ${item.surname}"
-            birthDate.text = item.dateOfBirth
-            age.text = item.age
-            additionalInfo.text = item.additionalInfo
-            if (item.phoneNumbers.size == 1) {
-                phoneNumbersButton.text = item.phoneNumbers[0]
-                val img = context?.getDrawable(R.drawable.ic_call)
-                phoneNumbersButton.setCompoundDrawablesRelative(null, null, img, null)
-            }
-            //todo social network listener
-            //todo phone numbers listener
-            //todo phone call
-            //todo open social networks
-            //todo animation of opening menu
-            //todo add popup menu
-        }
+        holder.bind(item)
+    }
+
+    override fun onViewAttachedToWindow(holder: ViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        //scrollListener?.onScroll(holder.layoutPosition, itemCount)
     }
 
     override fun getItemCount(): Int = values.size
@@ -58,5 +47,9 @@ class CardsRecyclerViewAdapter(
         val phoneNumbersButton: Button = view.findViewById(R.id.phone_number_btn)
         val socialNetworksButton: Button = view.findViewById(R.id.social_networks_btn)
         val popupMenuView: ImageView = view.findViewById(R.id.popup_menu_image_view)
+
+        fun bind(item: CardModel) {
+
+        }
     }
 }
