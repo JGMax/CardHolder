@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BookmarkView">
+        <attr name="triangle_height" format="float" />
+        <attr name="close_length" format="float" />
+        <attr name="open_length" format="float" />
+        <attr name="opened" format="boolean" />
+
+        <attr name="ic_left_transition" format="dimension" />
+        <attr name="ic_right_transition" format="dimension" />
+        <attr name="ic_top_transition" format="dimension" />
+        <attr name="ic_bottom_transition" format="dimension" />
+
+        <attr name="ic_drawable" format="reference" />
+        <attr name="ic_height" format="dimension" />
+        <attr name="ic_width" format="dimension" />
+        <attr name="ic_color" format="color" />
+
+        <attr name="bookmark_color" format="color" />
+
+        <attr name="bookmark_orientation" format="enum" >
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+
+    </declare-styleable>
+</resources>

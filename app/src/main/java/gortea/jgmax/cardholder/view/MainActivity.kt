@@ -2,7 +2,9 @@ package gortea.jgmax.cardholder.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import gortea.jgmax.cardholder.R
+import gortea.jgmax.cardholder.custom_view.BookmarkView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -10,8 +12,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-
-        supportActionBar?.hide()
 
         if (savedInstanceState == null) {
             val transaction = supportFragmentManager.beginTransaction()
