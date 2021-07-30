@@ -15,6 +15,7 @@ import gortea.jgmax.cardholder.constants.ITEM_RIGHT_MARGIN_DP
 import gortea.jgmax.cardholder.constants.ITEM_TOP_MARGIN_DP
 import gortea.jgmax.cardholder.decorators.HorizontalItemDecorator
 import gortea.jgmax.cardholder.decorators.VerticalItemDecorator
+import gortea.jgmax.cardholder.models.CardModel
 import gortea.jgmax.cardholder.utils.toPx
 
 class CardsFragment : Fragment() {

@@ -8,4 +8,9 @@
         <item name="bookmark_color">?attr/colorPrimary</item>
         <item name="ic_color">?attr/colorAccent</item>
     </style>
+
+    <style name="AppToolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">?attr/colorOnPrimary</item>
+        <item name="android:textColorSecondary">?attr/colorOnSecondary</item>
+    </style>
 </resources>

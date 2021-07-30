@@ -1,9 +1,10 @@
 package gortea.jgmax.cardholder.models
 
-class CardModel(val id: Int) {
-    var name = ""
-    var additionalInfo = ""
-    var position = ""
-    val phoneNumbers = arrayListOf<String>()
-    val socialNetworks = arrayListOf<String>()
-}
+data class CardModel(
+    val id: Int,
+    val name: String,
+    val additionalInfo: String,
+    val position: String,
+    val phoneNumbers: ArrayList<String>,
+    val socialNetworks: ArrayList<String>
+)
