@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="BookmarkView">
-        <attr name="triangle_height" format="float" />
-        <attr name="close_length" format="float" />
-        <attr name="open_length" format="float" />
+        <attr name="triangle_height" format="dimension" />
+        <attr name="close_length" format="dimension" />
+        <attr name="open_length" format="dimension" />
         <attr name="opened" format="boolean" />
 
         <attr name="ic_left_transition" format="dimension" />

@@ -1,49 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AuthorizationButtonStyle">
-        <item name="android:textColor">?attr/colorAccent</item>
-        <item name="android:paddingEnd">8dp</item>
-        <item name="android:paddingStart">8dp</item>
-        <item name="android:paddingTop">4dp</item>
-        <item name="android:paddingBottom">4dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textAppearance">@style/AppTextAppearance</item>
-        <item name="android:lines">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:backgroundTint">?attr/colorPrimary</item>
-        <item name="cornerRadius">2dp</item>
+    <style name="BookmarkStyle">
+        <item name="ic_height">16dp</item>
+        <item name="ic_width">16dp</item>
+        <item name="close_length">36dp</item>
+        <item name="triangle_height">8dp</item>
+        <item name="bookmark_color">?attr/colorPrimary</item>
+        <item name="ic_color">?attr/colorAccent</item>
     </style>
-
-    <style name="CardButtonStyle" parent="AuthorizationButtonStyle">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="InputField" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="android:background">?attr/colorSecondary</item>
-        <item name="android:paddingEnd">8dp</item>
-        <item name="android:paddingStart">8dp</item>
-        <item name="android:paddingTop">4dp</item>
-        <item name="android:paddingBottom">4dp</item>
-        <item name="android:textColorHint">?attr/colorOnSecondary</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="android:textAppearance">@style/AppTextAppearance</item>
-    </style>
-
-    <style name="AppTextAppearance" parent="@style/TextAppearance.AppCompat">
-        <item name="android:textSize">24sp</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <style name="TextViewStyle">
-        <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="android:textAppearance">@style/AppTextAppearance</item>
-    </style>
-
-    <style name="AdditionalTextViewStyle" parent="TextViewStyle">
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

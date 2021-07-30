@@ -1,10 +1,8 @@
 package gortea.jgmax.cardholder.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import gortea.jgmax.cardholder.R
-import gortea.jgmax.cardholder.custom_view.BookmarkView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

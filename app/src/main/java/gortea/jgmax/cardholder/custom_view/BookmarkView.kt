@@ -45,9 +45,9 @@ class BookmarkView @JvmOverloads constructor(
     private val animationDuration = 200L
 
     // Customizable fields
-    private var triangleHeight: Float = -1f
-    private var closeLength = -1f
-    private var openLength = -1f
+    private var triangleHeight = -1
+    private var closeLength = -1
+    private var openLength = -1
     var isOpened = false
         private set
     private var icLeftTransition = 0.toPx(context)
@@ -66,18 +66,21 @@ class BookmarkView @JvmOverloads constructor(
                 attrs,
                 R.styleable.BookmarkView,
                 defStyleAttr,
-               0
+                0
             )
             triangleHeight =
-                styledAttrs.getFloat(R.styleable.BookmarkView_triangle_height, triangleHeight)
-            closeLength = styledAttrs.getFloat(R.styleable.BookmarkView_close_length, closeLength)
-            openLength = styledAttrs.getFloat(R.styleable.BookmarkView_open_length, openLength)
+                styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_triangle_height, triangleHeight)
+            closeLength = styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_close_length, closeLength)
+            openLength = styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_open_length, openLength)
             isOpened = styledAttrs.getBoolean(R.styleable.BookmarkView_opened, false)
             currentLength = if (isOpened) 1f else 0f
 
-            icTopTransition = styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_top_transition, 0)
-            icLeftTransition = styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_left_transition, 0)
-            icRightTransition = styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_right_transition, 0)
+            icTopTransition =
+                styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_top_transition, 0)
+            icLeftTransition =
+                styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_left_transition, 0)
+            icRightTransition =
+                styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_right_transition, 0)
             icBottomTransition =
                 styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_bottom_transition, 0)
 
@@ -89,7 +92,7 @@ class BookmarkView @JvmOverloads constructor(
             }
 
             if (drawable != null) {
-               icHeight =
+                icHeight =
                     styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_height, icHeight)
                 icWidth =
                     styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_width, icWidth)
@@ -100,7 +103,7 @@ class BookmarkView @JvmOverloads constructor(
                 styledAttrs.getColor(R.styleable.BookmarkView_bookmark_color, Color.GRAY)
 
             val orientationValue =
-               styledAttrs.getInt(R.styleable.BookmarkView_bookmark_orientation, 0)
+                styledAttrs.getInt(R.styleable.BookmarkView_bookmark_orientation, 0)
             orientation = when (orientationValue) {
                 1 -> {
                     desiredHeight = 104.toPx(context)
@@ -141,13 +144,13 @@ class BookmarkView @JvmOverloads constructor(
 
         val targetViewLength = getTargets().first
 
-        if (openLength == -1f)
+        if (openLength == -1)
             openLength = targetViewLength
-        if (closeLength == -1f)
-            closeLength = targetViewLength / 2f
+        if (closeLength == -1)
+            closeLength = targetViewLength / 2
 
-        if (triangleHeight == -1f)
-            triangleHeight = openLength.coerceAtMost(closeLength) / 3f
+        if (triangleHeight == -1)
+            triangleHeight = openLength.coerceAtMost(closeLength) / 3
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -163,16 +166,16 @@ class BookmarkView @JvmOverloads constructor(
         }
     }
 
-    fun setTriangleHeight(height: Float) {
+    fun setTriangleHeight(height: Int) {
         if (height < closeLength.coerceAtMost(openLength)) {
             triangleHeight = height
             invalidate()
         }
     }
 
-    fun setCloseLength(length: Float) {
+    fun setCloseLength(length: Int) {
         val targetLength = getTargets().first
-        if (length !in 0f..targetLength) return
+        if (length !in 0..targetLength) return
 
         val proportion = (openLength - length) / (openLength - closeLength)
         currentLength *= proportion
@@ -180,9 +183,9 @@ class BookmarkView @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setOpenLength(length: Float) {
+    fun setOpenLength(length: Int) {
         val targetLength = getTargets().first
-        if (length !in 0f..targetLength) return
+        if (length !in 0..targetLength) return
 
         val proportion = (length - closeLength) / (openLength - closeLength)
         currentLength *= proportion
@@ -254,7 +257,8 @@ class BookmarkView @JvmOverloads constructor(
             icWidth = drawable.intrinsicWidth
         }
         if (orientation == Orientation.HORIZONTAL) {
-            x = (width - length + icLeftTransition + triangleHeight + defaultOffsetFromTriangle).toInt()
+            x =
+                (width - length + icLeftTransition + triangleHeight + defaultOffsetFromTriangle).toInt()
             y = (height / 2f - icHeight / 2 + icTopTransition).toInt()
         } else {
             x = (width / 2f - icWidth / 2f + icLeftTransition).toInt()
@@ -278,31 +282,31 @@ class BookmarkView @JvmOverloads constructor(
         path.apply {
             reset()
             if (orientation == Orientation.HORIZONTAL) {
-                moveTo(targetViewLength, 0f)
+                moveTo(targetViewLength.toFloat(), 0f)
                 lineTo(targetViewLength - length, 0f)
                 lineTo(targetViewLength - length + triangleHeight, targetViewWidth / 2f)
-                lineTo(targetViewLength - length, targetViewWidth)
-                lineTo(targetViewLength, targetViewWidth)
+                lineTo(targetViewLength - length, targetViewWidth.toFloat())
+                lineTo(targetViewLength.toFloat(), targetViewWidth.toFloat())
             } else {
                 moveTo(0f, 0f)
                 lineTo(0f, targetViewLength - length)
                 lineTo(targetViewWidth / 2f, targetViewLength - length - triangleHeight)
-                lineTo(targetViewWidth, targetViewLength - length)
-                lineTo(targetViewWidth, 0f)
+                lineTo(targetViewWidth.toFloat(), targetViewLength - length)
+                lineTo(targetViewWidth.toFloat(), 0f)
             }
             close()
         }
     }
 
-    private fun getTargets(): Pair<Float, Float> {
-        val targetViewLength: Float
-        val targetViewWidth: Float
+    private fun getTargets(): Pair<Int, Int> {
+        val targetViewLength: Int
+        val targetViewWidth: Int
         if (orientation == Orientation.HORIZONTAL) {
-            targetViewWidth = height.toFloat()
-            targetViewLength = width.toFloat()
+            targetViewWidth = height
+            targetViewLength = width
         } else {
-            targetViewWidth = width.toFloat()
-            targetViewLength = height.toFloat()
+            targetViewWidth = width
+            targetViewLength = height
         }
         return targetViewLength to targetViewWidth
     }

@@ -112,6 +112,35 @@ Aboba"/>
             app:layout_constraintStart_toStartOf="@id/location_tv"
             app:layout_constraintBottom_toBottomOf="@id/location_tv"/>
 
+        <gortea.jgmax.cardholder.custom_view.BookmarkView
+            android:id="@+id/networks_bookmark"
+            style="@style/BookmarkStyle"
+            android:layout_width="52dp"
+            android:layout_height="20dp"
+            app:ic_drawable="@drawable/ic_network"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintTop_toTopOf="@id/additional_info_tv"/>
+
+        <gortea.jgmax.cardholder.custom_view.BookmarkView
+            android:id="@+id/phones_bookmark"
+            style="@style/BookmarkStyle"
+            android:layout_width="52dp"
+            android:layout_height="20dp"
+            app:ic_drawable="@drawable/ic_call"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintTop_toBottomOf="@id/networks_bookmark"/>
+
+        <gortea.jgmax.cardholder.custom_view.BookmarkView
+            android:id="@+id/mails_bookmark"
+            style="@style/BookmarkStyle"
+            android:layout_width="52dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="12dp"
+            app:ic_drawable="@drawable/ic_mail"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintTop_toBottomOf="@id/phones_bookmark"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
