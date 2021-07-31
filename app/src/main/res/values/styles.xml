@@ -3,7 +3,7 @@
     <style name="BookmarkStyle">
         <item name="ic_height">16dp</item>
         <item name="ic_width">16dp</item>
-        <item name="close_length">36dp</item>
+        <item name="close_length">38dp</item>
         <item name="triangle_height">8dp</item>
         <item name="bookmark_color">?attr/colorPrimary</item>
         <item name="ic_color">?attr/colorAccent</item>
