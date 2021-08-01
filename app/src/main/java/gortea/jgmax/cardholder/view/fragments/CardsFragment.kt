@@ -1,4 +1,4 @@
-package gortea.jgmax.cardholder.view
+package gortea.jgmax.cardholder.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,13 +9,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import gortea.jgmax.cardholder.R
 import gortea.jgmax.cardholder.adapters.CardsListAdapter
-import gortea.jgmax.cardholder.constants.ITEM_BOTTOM_MARGIN_DP
-import gortea.jgmax.cardholder.constants.ITEM_LEFT_MARGIN_DP
-import gortea.jgmax.cardholder.constants.ITEM_RIGHT_MARGIN_DP
-import gortea.jgmax.cardholder.constants.ITEM_TOP_MARGIN_DP
+import gortea.jgmax.cardholder.decorators.params.ITEM_BOTTOM_MARGIN_DP
+import gortea.jgmax.cardholder.decorators.params.ITEM_LEFT_MARGIN_DP
+import gortea.jgmax.cardholder.decorators.params.ITEM_RIGHT_MARGIN_DP
+import gortea.jgmax.cardholder.decorators.params.ITEM_TOP_MARGIN_DP
 import gortea.jgmax.cardholder.decorators.HorizontalItemDecorator
 import gortea.jgmax.cardholder.decorators.VerticalItemDecorator
-import gortea.jgmax.cardholder.models.CardModel
 import gortea.jgmax.cardholder.utils.toPx
 
 class CardsFragment : Fragment() {

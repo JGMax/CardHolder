@@ -1,4 +1,4 @@
-package gortea.jgmax.cardholder.custom_view
+package gortea.jgmax.cardholder.custom
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -12,6 +12,7 @@ import android.view.View
 import androidx.annotation.AttrRes
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import gortea.jgmax.cardholder.R
+import gortea.jgmax.cardholder.custom.params.Orientation
 import gortea.jgmax.cardholder.utils.toPx
 import kotlin.math.abs
 

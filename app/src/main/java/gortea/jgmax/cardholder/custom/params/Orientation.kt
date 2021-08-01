@@ -1,4 +1,4 @@
-package gortea.jgmax.cardholder.custom_view
+package gortea.jgmax.cardholder.custom.params
 
 enum class Orientation {
     VERTICAL, HORIZONTAL

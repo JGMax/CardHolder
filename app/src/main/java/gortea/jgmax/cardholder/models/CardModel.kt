@@ -1,10 +1,18 @@
 package gortea.jgmax.cardholder.models
 
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableList
+import gortea.jgmax.cardholder.models.params.ShowStates
+
 data class CardModel(
     val id: Int,
-    val name: String,
-    val additionalInfo: String,
-    val position: String,
-    val phoneNumbers: ArrayList<String>,
-    val socialNetworks: ArrayList<String>
-)
+    val name: ObservableField<String>,
+    val additionalInfo: ObservableField<String>,
+    val position: ObservableField<String>,
+    val phoneNumbers: ObservableList<String>,
+    val socialNetworks: ObservableList<String>,
+    val emailList: ObservableList<String>,
+    val address: ObservableField<String>
+) {
+    var showState = ObservableField(ShowStates.SHOW_NOTHING)
+}
