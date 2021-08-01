@@ -12,7 +12,7 @@ data class CardModel(
     val phoneNumbers: ObservableList<String>,
     val socialNetworks: ObservableList<String>,
     val emailList: ObservableList<String>,
-    val address: ObservableField<String>
+    val location: ObservableField<String>
 ) {
     var showState = ObservableField(ShowStates.SHOW_NOTHING)
 }

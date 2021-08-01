@@ -8,9 +8,9 @@ import gortea.jgmax.cardholder.utils.hasPrevious
 
 class VerticalItemDecorator(
     private val topDivider: Int,
+    private val mediumDivider: Int,
     private val bottomDivider: Int
 ) : RecyclerView.ItemDecoration() {
-    private val mediumDivider = (topDivider + bottomDivider) / 2
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
@@ -22,8 +22,8 @@ class VerticalItemDecorator(
         val adapter = parent.adapter ?: return
 
         outRect.apply {
-            top = if(adapter.hasPrevious(position)) mediumDivider else topDivider
-            bottom = if(adapter.hasNext(position)) mediumDivider else bottomDivider
+            top = if(adapter.hasPrevious(position)) mediumDivider / 2 else topDivider
+            bottom = if(adapter.hasNext(position)) mediumDivider / 2 else bottomDivider
         }
     }
 }

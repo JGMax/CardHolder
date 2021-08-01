@@ -10,8 +10,12 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.AttrRes
+import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import gortea.jgmax.cardholder.R
+import gortea.jgmax.cardholder.custom.model.BookmarkViewModel
 import gortea.jgmax.cardholder.custom.params.Orientation
 import gortea.jgmax.cardholder.utils.toPx
 import kotlin.math.abs
@@ -21,6 +25,14 @@ class BookmarkView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     @AttrRes defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
+
+    // view state
+    private val model = BookmarkViewModel(this)
+    var opened: Boolean
+        set(value) {
+            model.opened = value
+        }
+        get() = model.opened
 
     // listener init
     private var stateListener: StateChangeListener? = null
@@ -49,8 +61,6 @@ class BookmarkView @JvmOverloads constructor(
     private var triangleHeight = -1
     private var closeLength = -1
     private var openLength = -1
-    var isOpened = false
-        private set
     private var icLeftTransition = 0.toPx(context)
     private var icRightTransition = 0.toPx(context)
     private var icTopTransition = 0.toPx(context)
@@ -73,8 +83,8 @@ class BookmarkView @JvmOverloads constructor(
                 styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_triangle_height, triangleHeight)
             closeLength = styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_close_length, closeLength)
             openLength = styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_open_length, openLength)
-            isOpened = styledAttrs.getBoolean(R.styleable.BookmarkView_opened, false)
-            currentLength = if (isOpened) 1f else 0f
+            opened = styledAttrs.getBoolean(R.styleable.BookmarkView_opened, false)
+            currentLength = if (opened) 1f else 0f
 
             icTopTransition =
                 styledAttrs.getDimensionPixelSize(R.styleable.BookmarkView_ic_top_transition, 0)
@@ -140,6 +150,19 @@ class BookmarkView @JvmOverloads constructor(
         setMeasuredDimension(width, height)
     }
 
+    private fun getTargets(): Pair<Int, Int> {
+        val targetViewLength: Int
+        val targetViewWidth: Int
+        if (orientation == Orientation.HORIZONTAL) {
+            targetViewWidth = height
+            targetViewLength = width
+        } else {
+            targetViewWidth = width
+            targetViewLength = height
+        }
+        return targetViewLength to targetViewWidth
+    }
+
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
 
@@ -152,96 +175,6 @@ class BookmarkView @JvmOverloads constructor(
 
         if (triangleHeight == -1)
             triangleHeight = openLength.coerceAtMost(closeLength) / 3
-    }
-
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        canvas ?: return
-
-        drawPath(path)
-        canvas.drawPath(path, bgPaint)
-        drawable?.let {
-            it.setTint(drawableColor)
-            setDrawableDimensions(it)
-            it.draw(canvas)
-        }
-    }
-
-    fun setTriangleHeight(height: Int) {
-        if (height < closeLength.coerceAtMost(openLength)) {
-            triangleHeight = height
-            invalidate()
-        }
-    }
-
-    fun setCloseLength(length: Int) {
-        val targetLength = getTargets().first
-        if (length !in 0..targetLength) return
-
-        val proportion = (openLength - length) / (openLength - closeLength)
-        currentLength *= proportion
-        closeLength = length
-        invalidate()
-    }
-
-    fun setOpenLength(length: Int) {
-        val targetLength = getTargets().first
-        if (length !in 0..targetLength) return
-
-        val proportion = (length - closeLength) / (openLength - closeLength)
-        currentLength *= proportion
-        openLength = length
-        invalidate()
-    }
-
-    fun isOpened(opened: Boolean, withAnimation: Boolean = true) {
-        if (isOpened == opened) return
-        isOpened = opened
-        stateListener?.onStateChange(isOpened)
-
-        val startValue: Float
-        val endValue: Float
-        if (isOpened) {
-            startValue = 0f
-            endValue = 1f
-        } else {
-            startValue = 1f
-            endValue = 0f
-        }
-
-        if (withAnimation) {
-            val valueAnimator = ValueAnimator.ofFloat(startValue, endValue)
-            valueAnimator.duration = animationDuration
-            valueAnimator.addUpdateListener {
-                currentLength = it.animatedValue as Float
-                invalidate()
-            }
-            valueAnimator.start()
-        } else if (!withAnimation) {
-            currentLength = endValue
-            invalidate()
-        }
-    }
-
-    fun setIconSize(width: Int, height: Int) {
-        if (icWidth == width && icHeight == height) return
-        icHeight = height
-        icWidth = width
-        invalidate()
-    }
-
-    fun setIconTransitions(top: Int, left: Int, right: Int, bottom: Int) {
-        if (top == icTopTransition
-            && left == icLeftTransition
-            && right == icRightTransition
-            && bottom == icBottomTransition
-        ) return
-
-        icTopTransition = top
-        icLeftTransition = left
-        icRightTransition = right
-        icBottomTransition = bottom
-        invalidate()
     }
 
     private fun setDrawableDimensions(drawable: Drawable) {
@@ -299,21 +232,99 @@ class BookmarkView @JvmOverloads constructor(
         }
     }
 
-    private fun getTargets(): Pair<Int, Int> {
-        val targetViewLength: Int
-        val targetViewWidth: Int
-        if (orientation == Orientation.HORIZONTAL) {
-            targetViewWidth = height
-            targetViewLength = width
-        } else {
-            targetViewWidth = width
-            targetViewLength = height
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+        canvas ?: return
+
+        drawPath(path)
+        canvas.drawPath(path, bgPaint)
+        drawable?.let {
+            it.setTint(drawableColor)
+            setDrawableDimensions(it)
+            it.draw(canvas)
         }
-        return targetViewLength to targetViewWidth
+    }
+
+    fun setTriangleHeight(height: Int) {
+        if (height < closeLength.coerceAtMost(openLength)) {
+            triangleHeight = height
+            invalidate()
+        }
+    }
+
+    fun setCloseLength(length: Int) {
+        val targetLength = getTargets().first
+        if (length !in 0..targetLength) return
+
+        val proportion = (openLength - length) / (openLength - closeLength)
+        currentLength *= proportion
+        closeLength = length
+        invalidate()
+    }
+
+    fun setOpenLength(length: Int) {
+        val targetLength = getTargets().first
+        if (length !in 0..targetLength) return
+
+        val proportion = (length - closeLength) / (openLength - closeLength)
+        currentLength *= proportion
+        openLength = length
+        invalidate()
+    }
+
+    fun setIconSize(width: Int, height: Int) {
+        if (icWidth == width && icHeight == height) return
+        icHeight = height
+        icWidth = width
+        invalidate()
+    }
+
+    fun setIconTransitions(top: Int, left: Int, right: Int, bottom: Int) {
+        if (top == icTopTransition
+            && left == icLeftTransition
+            && right == icRightTransition
+            && bottom == icBottomTransition
+        ) return
+
+        icTopTransition = top
+        icLeftTransition = left
+        icRightTransition = right
+        icBottomTransition = bottom
+        invalidate()
+    }
+
+    fun setOpened(opened: Boolean, withAnimation: Boolean = true) {
+        if (opened && currentLength == 1f
+            || !opened && currentLength == 0f) return
+
+        val startValue: Float
+        val endValue: Float
+        if (opened) {
+            startValue = 0f
+            endValue = 1f
+        } else {
+            startValue = 1f
+            endValue = 0f
+        }
+
+        if (withAnimation) {
+            val valueAnimator = ValueAnimator.ofFloat(startValue, endValue)
+            valueAnimator.duration = animationDuration
+            valueAnimator.addUpdateListener {
+                currentLength = it.animatedValue as Float
+                invalidate()
+            }
+            valueAnimator.start()
+        } else if (!withAnimation) {
+            currentLength = endValue
+        }
+        invalidate()
+        this.opened = opened
+        stateListener?.onStateChange(this.opened)
     }
 
     override fun performClick(): Boolean {
-        isOpened(!isOpened)
+        setOpened(!opened, true)
         return super.performClick()
     }
 
@@ -323,5 +334,27 @@ class BookmarkView @JvmOverloads constructor(
 
     interface StateChangeListener {
         fun onStateChange(isOpened: Boolean)
+    }
+
+    companion object {
+        @BindingAdapter("opened")
+        @JvmStatic fun setOpened(view: BookmarkView, newValue: Boolean) {
+            if (view.opened != newValue) {
+                view.opened = newValue
+            }
+        }
+
+        @InverseBindingAdapter(attribute = "opened")
+        @JvmStatic
+        fun getOpened(view: BookmarkView) = view.opened
+
+        @BindingAdapter("openedAttrChanged")
+        @JvmStatic
+        fun setListeners(
+            view: BookmarkView,
+            attrChange: InverseBindingListener
+        ) {
+            view.setOnClickListener { attrChange.onChange() }
+        }
     }
 }

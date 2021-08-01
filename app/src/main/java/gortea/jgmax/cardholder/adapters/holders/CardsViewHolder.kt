@@ -1,11 +1,12 @@
 package gortea.jgmax.cardholder.adapters.holders
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import gortea.jgmax.cardholder.databinding.ItemCardsBinding
 import gortea.jgmax.cardholder.models.CardModel
 
-class CardsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class CardsViewHolder(private val binding: ItemCardsBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(item: CardModel) {
-
+        binding.model = item
+        binding.executePendingBindings()
     }
 }

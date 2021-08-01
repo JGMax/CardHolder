@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="BookmarkStyle">
-        <item name="ic_height">16dp</item>
-        <item name="ic_width">16dp</item>
-        <item name="close_length">38dp</item>
-        <item name="triangle_height">8dp</item>
+        <item name="ic_height">20dp</item>
+        <item name="ic_width">20dp</item>
+        <item name="close_length">60dp</item>
+        <item name="ic_left_transition">14dp</item>
+        <item name="triangle_height">12dp</item>
         <item name="bookmark_color">?attr/colorPrimary</item>
         <item name="ic_color">?attr/colorAccent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 
     <style name="AppToolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
