@@ -1,166 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="?attr/colorAccent"
-    app:cardCornerRadius="2dp"
-    app:cardElevation="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
+        <import type="gortea.jgmax.cardholder.models.params.ShowStates" />
+        <variable
+            name="model"
+            type="gortea.jgmax.cardholder.models.CardModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="168dp">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/colorAccent"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="4dp">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/left_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="8dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/right_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="8dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/left_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="8dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/top_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="8dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/right_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="8dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/bottom_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="8dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/top_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="8dp" />
 
-        <TextView
-            android:id="@+id/name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:layout_marginEnd="8dp"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintEnd_toStartOf="@+id/menu_btn"
-            app:layout_constraintStart_toStartOf="@id/left_guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Bredikhin Maxim" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/bottom_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="8dp" />
 
-        <Button
-            android:id="@+id/menu_btn"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/ic_menu"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="@id/right_guideline"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="24sp"
+                android:text="@{model.name}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@+id/menu_btn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Bredikhin Maxim" />
 
-        <TextView
-            android:id="@+id/position_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textSize="@dimen/default_text_size"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/left_guideline"
-            app:layout_constraintTop_toBottomOf="@id/name_tv"
-            tools:text="Student, HSE" />
+            <Button
+                android:id="@+id/menu_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/ic_menu"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/color_lines"
-            app:layout_constraintEnd_toEndOf="@id/right_guideline"
-            app:layout_constraintStart_toStartOf="@id/left_guideline"
-            app:layout_constraintBottom_toBottomOf="@id/position_tv"/>
+            <TextView
+                android:id="@+id/position_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/default_text_size"
+                android:text="@{model.position}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/name_tv"
+                tools:text="Student, HSE" />
 
-        <TextView
-            android:id="@+id/additional_info_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:maxLines="3"
-            android:ellipsize="end"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toTopOf="@id/location_tv"
-            app:layout_constraintEnd_toStartOf="@+id/networks_bookmark"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/left_guideline"
-            app:layout_constraintTop_toBottomOf="@id/position_tv"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="One of the best android developers\n
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/color_lines"
+                app:layout_constraintBottom_toBottomOf="@id/position_tv"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline" />
+
+            <TextView
+                android:id="@+id/additional_info_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@{model.additionalInfo}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@id/location_tv"
+                app:layout_constraintEnd_toStartOf="@+id/networks_bookmark"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/position_tv"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="One of the best android developers\n
 Junior Android Developer \n
 Aboba" />
 
-        <TextView
-            android:id="@+id/location_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:layout_marginEnd="8dp"
-            app:drawableStartCompat="@drawable/ic_map"
-            app:drawableTint="?attr/colorPrimary"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
-            app:layout_constraintEnd_toStartOf="@+id/mails_bookmark"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/left_guideline"
-            tools:text="Pushkina Street, 35" />
+            <TextView
+                android:id="@+id/location_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{model.address}"
+                android:visibility="@{TextUtils.isEmpty(model.address) ? View.GONE : View.VISIBLE}"
+                app:drawableStartCompat="@drawable/ic_map"
+                app:drawableTint="?attr/colorPrimary"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
+                app:layout_constraintEnd_toStartOf="@+id/mails_bookmark"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                tools:text="Pushkina Street, 35" />
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/color_lines"
-            app:layout_constraintEnd_toEndOf="@id/location_tv"
-            app:layout_constraintStart_toStartOf="@id/location_tv"
-            app:layout_constraintBottom_toBottomOf="@id/location_tv"/>
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/color_lines"
+                app:layout_constraintBottom_toBottomOf="@id/location_tv"
+                app:layout_constraintEnd_toEndOf="@id/location_tv"
+                app:layout_constraintStart_toStartOf="@id/location_tv" />
 
-        <gortea.jgmax.cardholder.custom_view.BookmarkView
-            android:id="@+id/networks_bookmark"
-            style="@style/BookmarkStyle"
-            android:layout_width="54dp"
-            android:layout_height="20dp"
-            app:ic_drawable="@drawable/ic_network"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/additional_info_tv"/>
+            <gortea.jgmax.cardholder.custom.BookmarkView
+                android:id="@+id/networks_bookmark"
+                style="@style/BookmarkStyle"
+                android:layout_width="54dp"
+                android:layout_height="20dp"
+                app:opened="@{model.showState == ShowStates.SHOW_SOCIAL_NETWORKS}"
+                app:ic_drawable="@drawable/ic_network"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/additional_info_tv" />
 
-        <gortea.jgmax.cardholder.custom_view.BookmarkView
-            android:id="@+id/phones_bookmark"
-            style="@style/BookmarkStyle"
-            android:layout_width="54dp"
-            android:layout_height="20dp"
-            app:ic_drawable="@drawable/ic_call"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/networks_bookmark"
-            tools:opened="true"/>
+            <gortea.jgmax.cardholder.custom.BookmarkView
+                android:id="@+id/phones_bookmark"
+                style="@style/BookmarkStyle"
+                android:layout_width="54dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp"
+                app:opened="@{model.showState == ShowStates.SHOW_PHONES}"
+                app:ic_drawable="@drawable/ic_call"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/networks_bookmark"
+                tools:opened="true" />
 
-        <gortea.jgmax.cardholder.custom_view.BookmarkView
-            android:id="@+id/mails_bookmark"
-            style="@style/BookmarkStyle"
-            android:layout_width="54dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="12dp"
-            app:ic_drawable="@drawable/ic_mail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/phones_bookmark"/>
+            <gortea.jgmax.cardholder.custom.BookmarkView
+                android:id="@+id/mails_bookmark"
+                style="@style/BookmarkStyle"
+                android:layout_width="54dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp"
+                app:opened="@{model.showState == ShowStates.SHOW_EMAILS}"
+                app:ic_drawable="@drawable/ic_mail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phones_bookmark"
+                app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
