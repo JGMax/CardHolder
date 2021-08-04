@@ -10,4 +10,4 @@ fun Int.toPx(context: Context): Int {
 }
 
 fun RecyclerView.Adapter<*>.hasPrevious(position: Int) = position > 0
-fun RecyclerView.Adapter<*>.hasNext(position: Int) = position < itemCount
+fun RecyclerView.Adapter<*>.hasNext(position: Int) = position < itemCount - 1
