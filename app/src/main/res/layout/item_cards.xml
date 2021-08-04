@@ -8,8 +8,11 @@
         <import type="android.text.TextUtils"/>
         <import type="gortea.jgmax.cardholder.models.params.ShowStates" />
         <variable
-            name="model"
+            name="item"
             type="gortea.jgmax.cardholder.models.CardModel" />
+        <variable
+            name="viewModel"
+            type="gortea.jgmax.cardholder.viewmodels.CardsListViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -59,7 +62,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textSize="32sp"
-                android:text="@{model.name}"
+                android:text="@{item.name}"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@+id/menu_btn"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -84,7 +87,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textSize="@dimen/default_text_size"
-                android:text="@{model.position}"
+                android:text="@{item.position}"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@+id/right_guideline"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -108,7 +111,7 @@
                 android:layout_marginEnd="8dp"
                 android:ellipsize="end"
                 android:maxLines="4"
-                android:text="@{model.additionalInfo}"
+                android:text="@{item.additionalInfo}"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@id/location_tv"
                 app:layout_constraintEnd_toStartOf="@+id/networks_bookmark"
@@ -128,8 +131,9 @@ Aboba" />
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:paddingEnd="8dp"
-                android:text="@{model.location}"
-                android:visibility="@{TextUtils.isEmpty(model.location) ? View.GONE : View.VISIBLE}"
+                android:text="@{item.location}"
+                android:visibility="@{TextUtils.isEmpty(item.location) ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> viewModel.onEventOpenLocation(item.location)}"
                 app:drawableStartCompat="@drawable/ic_map"
                 app:drawableTint="?attr/colorPrimary"
                 app:layout_constrainedWidth="true"
@@ -152,7 +156,8 @@ Aboba" />
                 style="@style/BookmarkStyle"
                 android:layout_width="84dp"
                 android:layout_height="28dp"
-                app:opened="@{model.showState == ShowStates.SHOW_SOCIAL_NETWORKS}"
+                app:opened="@{item.showState == ShowStates.SHOW_SOCIAL_NETWORKS}"
+                android:onClick="@{() -> viewModel.onEventOpenContacts(item, ShowStates.SHOW_SOCIAL_NETWORKS)}"
                 app:ic_drawable="@drawable/ic_network"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/additional_info_tv" />
@@ -163,7 +168,8 @@ Aboba" />
                 android:layout_width="84dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="12dp"
-                app:opened="@{model.showState == ShowStates.SHOW_PHONES}"
+                app:opened="@{item.showState == ShowStates.SHOW_PHONES}"
+                android:onClick="@{() -> viewModel.onEventOpenContacts(item, ShowStates.SHOW_PHONES)}"
                 app:ic_drawable="@drawable/ic_call"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/networks_bookmark"
@@ -175,7 +181,8 @@ Aboba" />
                 android:layout_width="84dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="12dp"
-                app:opened="@{model.showState == ShowStates.SHOW_EMAILS}"
+                app:opened="@{item.showState == ShowStates.SHOW_EMAILS}"
+                android:onClick="@{() -> viewModel.onEventOpenContacts(item, ShowStates.SHOW_EMAILS)}"
                 app:ic_drawable="@drawable/ic_mail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/phones_bookmark"
